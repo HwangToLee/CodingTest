@@ -1,7 +1,2 @@
 # Ignore everything
-*
-
-# Except .cpp and .md files
-!*.cpp
-!*.md
-!.gitignore
+build/

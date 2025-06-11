@@ -9,7 +9,7 @@
 
       "type": "lldb",
       "request": "launch",
-      "program": "${workspaceFolder}/${fileBasenameNoExtension}/${fileBasenameNoExtension}.exe",
+      "program": "${workspaceFolder}/build/${fileBasenameNoExtension}.exe",
 
       "args": [],
       "stopAtEntry": true,
