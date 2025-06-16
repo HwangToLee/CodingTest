@@ -1,4 +1,4 @@
 # Ignore everything
 build/
 
-.vscode/setting.json
+.vscode/settings.json
