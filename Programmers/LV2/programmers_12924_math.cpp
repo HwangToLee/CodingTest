@@ -23,14 +23,14 @@
 
 #include <string>
 #include <vector>
+#include <chrono>
 
 using namespace std;
 
 int solution_math(int n) {
     int answer = 0;
-    int temp = 0;
-    for (int i = 1; i < n; i++){
-        if ((n - ((i * i - 1) / 2)) % i  == 0) answer++;
+    for (int i = 1; i * (i - 1) / 2 < n; i++) {
+        if ((n - i * (i - 1) / 2) % i == 0) answer++;
     }
     return answer;
 }
@@ -39,22 +39,37 @@ int solution_brute(int n) {
     int answer = 0;
     int temp = 0;
     for (int i = 1; i < n; i++){
-        if ((n - ((i * i - 1) / 2)) % i  == 0) answer++;
+        for (int j = i; j < n; j++){
+            temp += j;
+            if (temp > n) {
+                temp = 0;
+                break;
+            }
+            if (temp == n) {
+                answer++;
+                temp = 0;
+                break;
+            }
+        }
     }
+    answer++;
     return answer;
 }
 
 int main(){
     int n = 10000;
-    clock_t start, end;
 
-    start = clock();
-    cout << solution_brute(n) << endl;
-    end = clock();
-    cout << "bruteforce: " << (double)(end - start) / CLOCKS_PER_SEC << "s\n";
+    auto start = chrono::steady_clock::now();
+    for (int i = 0; i < 10000; i++)
+        solution_brute(n);
+    auto end = chrono::steady_clock::now();
+    auto diff = chrono::duration_cast<chrono::milliseconds>(end - start);
+    cout << "bruteforce: " << diff.count() << "ms\n";
 
-    start = clock();
-    cout << solution_math(n) << endl;
-    end = clock();
-    cout << "math: " << (double)(end - start) / CLOCKS_PER_SEC << "s\n";
+    start = chrono::steady_clock::now();    
+    for (int i = 0; i < 10000; i++)
+        solution_math(n);
+    end = chrono::steady_clock::now();
+    diff = chrono::duration_cast<chrono::milliseconds>(end - start);
+    cout << "math: " << diff.count() << "ms\n";
 }
