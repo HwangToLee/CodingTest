@@ -28,28 +28,34 @@
 #include <algorithm>
 using namespace std;
 
-int solution(vector<int> people, int limit) {
+int solution(vector<int> people, int limit)
+{
     int count = 0;
     int front = 0;
     int back = people.size() - 1;
 
     sort(people.begin(), people.end());
 
-    while(true){
-        if (people[front] + people[back] > limit) {
+    while (true)
+    {
+        if (people[front] + people[back] > limit)
+        {
             count++;
             back--;
         }
-        else {
+        else
+        {
             count++;
             front++;
             back--;
         }
-        if (front == back) {
+        if (front == back)
+        {
             count++;
             break;
         }
-        if (front > back) {
+        if (front > back)
+        {
             break;
         }
     }
@@ -57,21 +63,23 @@ int solution(vector<int> people, int limit) {
     return count;
 }
 
-int main(){
+int main()
+{
     string line;
     getline(cin, line);
-    istringstream iss (line);
-    
+    istringstream iss(line);
+
     vector<int> nums;
     int num;
-    
-    while(iss >> num){
+
+    while (iss >> num)
+    {
         nums.push_back(num);
     }
-    
+
     int limit;
     cin >> limit;
-    
+
     cout << solution(nums, limit) << endl;
     return 0;
 }

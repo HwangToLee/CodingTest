@@ -25,34 +25,41 @@
 
 using namespace std;
 
-vector<int> solution(int brown, int yellow) {
+vector<int> solution(int brown, int yellow)
+{
     int sum = brown + yellow;
     vector<int> answer = {1, sum};
-    for (int i = brown; i > 2; i--){
+    for (int i = brown; i > 2; i--)
+    {
         int answerSum = answer[0] + answer[1];
-        if ((sum % i) == 0){
-            int temp = sum/i;
-            if(i + temp < answerSum && temp > 2 && i >= temp && (i - 2) * (temp - 2) == yellow) {
+        if ((sum % i) == 0)
+        {
+            int temp = sum / i;
+            if (i + temp < answerSum && temp > 2 && i >= temp && (i - 2) * (temp - 2) == yellow)
+            {
                 answer[0] = i;
-                answer[1] = sum/i;
+                answer[1] = sum / i;
             }
         }
     }
     return answer;
 }
 
-int main(){
-    while(true){
+int main()
+{
+    while (true)
+    {
         string line;
         getline(cin, line);
         istringstream iss(line);
-        
+
         vector<int> nums;
         int num;
-        while (iss >> num){
+        while (iss >> num)
+        {
             nums.push_back(num);
         }
-        
+
         vector<int> answer = solution(nums[0], nums[1]);
         cout << answer[0] << ' ' << answer[1] << endl;
     }

@@ -56,24 +56,26 @@ using namespace std;
 //     return answer;
 // }
 
-//map 사용
-//벡터 사용할 때보다 몇몇 경우 더 좋고 빠르지만 공간사용 더 많은 경우가 더 많고 느린 경우들도 꽤 있음
+// map 사용
+// 벡터 사용할 때보다 몇몇 경우 더 좋고 빠르지만 공간사용 더 많은 경우가 더 많고 느린 경우들도 꽤 있음
 #include <map>
 
-int solution(int k, vector<int> tangerine) {
+int solution(int k, vector<int> tangerine)
+{
     int answer = 0;
     map<int, int> tangerineSize;
 
-    for (int i = 0; i < tangerine.size(); i++){
+    for (int i = 0; i < tangerine.size(); i++)
+    {
         tangerineSize[tangerine[i]]++;
     }
 
     vector<pair<int, int>> vec(tangerineSize.begin(), tangerineSize.end());
-    sort(vec.begin(), vec.end(), [](const pair<int, int>& a, const pair<int, int>&b){
-        return a.second > b.second;
-    });
+    sort(vec.begin(), vec.end(), [](const pair<int, int> &a, const pair<int, int> &b)
+         { return a.second > b.second; });
 
-    while(k > 0){
+    while (k > 0)
+    {
         k -= vec[answer].second;
         answer++;
     }
@@ -81,7 +83,8 @@ int solution(int k, vector<int> tangerine) {
     return answer;
 }
 
-int main(){
+int main()
+{
     int k = 6;
     vector<int> tangerine = {1, 3, 2, 5, 4, 5, 2, 3};
     cout << solution(k, tangerine) << endl;

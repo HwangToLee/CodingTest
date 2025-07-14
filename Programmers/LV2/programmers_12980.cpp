@@ -37,9 +37,12 @@ using namespace std;
 int solution(int n)
 {
     int power = 0;
-    while(n){
-        if (n % 2 == 0) n /= 2;
-        else {
+    while (n)
+    {
+        if (n % 2 == 0)
+            n /= 2;
+        else
+        {
             n--;
             power++;
         }
@@ -48,8 +51,10 @@ int solution(int n)
     return power;
 }
 
-int main(){
-    while(true){
+int main()
+{
+    while (true)
+    {
         int num;
         cin >> num;
         cout << solution(num) << endl;
